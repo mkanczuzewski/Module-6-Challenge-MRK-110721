@@ -15,7 +15,6 @@ $(document).ready(function()
     weatherHistory();
 
     $('#city-form').on('submit', () => {
-        console.log('test1');
         // prevents default behaviour
         // Prevents event propagation
         return false;
@@ -73,7 +72,6 @@ function bob(cityName){
         // Enter key corresponds to number 13
         if (e.which === 13) {
             $('#city-form').submit();
-            console.log('form submitted');
         }
     })
 
