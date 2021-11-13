@@ -14,12 +14,18 @@ $(document).ready(function()
 {
     weatherHistory();
 
+    $('#city-form').on('submit', () => {
+        console.log('test1');
+        // prevents default behaviour
+        // Prevents event propagation
+        return false;
+    });
+    
     // Click Search
     $(cityBtnE1).click(function() 
     {
         //format the open weather "current weather data" API URL
         var cityName = $(cityNameE1).val()
-        console.log(cityName);
         var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + $.trim(cityName) + '&appid=d318a1a45ba023e17ddc1da41d22b214';
         
         if (localStorage.getItem(cityName) === null)
@@ -62,12 +68,14 @@ function bob(cityName){
     cityBtnE1.click();
 }
 
-// cityNameE1.addEventListener("keyup", function(event) {
-//     if (event.keyCode === 13) {
-//         event.preventDefault();
-//         cityBtnE1.click();
-//     }
-// });
+    $('#city').keypress((e) => {
+  
+        // Enter key corresponds to number 13
+        if (e.which === 13) {
+            $('#city-form').submit();
+            console.log('form submitted');
+        }
+    })
 
 //Once city is converted to latitude and longitude, query to second api and build current weather
 function oneCallApi () 
